@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
@@ -50,4 +52,26 @@ display(){
 // getVal():void{
 // this.showSavedVal = localStorage.getItem('keyInLocal');
 // }
- }
+
+user:any={
+  firstname:'',
+  password:''
+  };
+  onSubmitTemplateBased(user:any) {
+  console.log(user);
+  }
+
+
+
+form = new FormGroup({
+  "firstName": new FormControl("", Validators.compose([Validators.required,Validators.minLength(3)])),
+  "password": new FormControl("", Validators.required),
+  });
+  onSubmit() {
+  console.log("reactive form submitted");
+  console.log(this.form.value);
+  }
+  reset() {
+  this.form.reset();
+  }
+}
